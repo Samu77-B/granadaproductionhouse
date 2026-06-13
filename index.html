@@ -72,19 +72,7 @@
       padding: 0 2rem;
     }
 
-    .hero__logo {
-      display: block;
-      width: min(90vw, 720px);
-      margin-bottom: 2.5rem;
-    }
-
-    .hero__logo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 2px 24px rgba(0, 0, 0, 0.5));
-    }
-
+    .hero__brand,
     .hero__title {
       font-size: clamp(1.5rem, 4vw, 2.25rem);
       font-weight: 300;
@@ -93,14 +81,18 @@
       text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
     }
 
-    @media (max-width: 767px) {
-      .hero__logo {
-        width: min(85vw, 320px);
-        margin-bottom: 2rem;
-      }
+    .hero__brand {
+      margin-bottom: 2rem;
+    }
 
+    @media (max-width: 767px) {
+      .hero__brand,
       .hero__title {
         letter-spacing: 0.3em;
+      }
+
+      .hero__brand {
+        margin-bottom: 1.5rem;
       }
     }
   </style>
@@ -116,17 +108,8 @@
     >
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
-      <picture class="hero__logo">
-        <source media="(max-width: 767px)" srcset="assets/GPH-Logo-Wht - Mbl.png">
-        <source media="(min-width: 768px)" srcset="assets/GPH-Logo-Wht.png">
-        <img
-          src="assets/GPH-Logo-Wht.png"
-          alt="Granada Production House"
-          width="720"
-          height="120"
-        >
-      </picture>
-      <h1 class="hero__title">Coming Soon</h1>
+      <h1 class="hero__brand">Granada Production House</h1>
+      <p class="hero__title">Coming Soon</p>
     </div>
   </main>
 </body>
