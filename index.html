@@ -41,7 +41,7 @@
       background: #1a1410;
     }
 
-    .hero__video {
+    .hero__image {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -85,6 +85,10 @@
       filter: drop-shadow(0 2px 24px rgba(0, 0, 0, 0.5));
     }
 
+    .hero__logo--mobile {
+      display: none;
+    }
+
     .hero__title {
       font-size: clamp(1.5rem, 4vw, 2.25rem);
       font-weight: 300;
@@ -94,6 +98,18 @@
     }
 
     @media (max-width: 767px) {
+      .hero__image {
+        object-position: 65% center;
+      }
+
+      .hero__logo--desktop {
+        display: none;
+      }
+
+      .hero__logo--mobile {
+        display: block;
+      }
+
       .hero__logo {
         width: min(85vw, 320px);
         margin-bottom: 1.5rem;
@@ -107,27 +123,29 @@
 </head>
 <body>
   <main class="hero">
-    <video
-      class="hero__video"
-      src="assets/gph-homepage-hero.mp4"
-      autoplay
-      muted
-      loop
-      playsinline
-      aria-hidden="true"
-    ></video>
+    <img
+      class="hero__image"
+      src="assets/gph-homepage.png"
+      alt=""
+      width="1920"
+      height="1080"
+    >
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
-      <picture class="hero__logo">
-        <source media="(max-width: 767px)" srcset="assets/GPH-Logo-Wht - Mbl.png?v=2">
-        <source media="(min-width: 768px)" srcset="assets/GPH-Logo-Wht.png?v=2">
-        <img
-          src="assets/GPH-Logo-Wht.png?v=2"
-          alt="Granada Production House"
-          width="720"
-          height="120"
-        >
-      </picture>
+      <img
+        class="hero__logo hero__logo--desktop"
+        src="assets/GPH-Logo-Wht.png?v=3"
+        alt="Granada Production House"
+        width="720"
+        height="120"
+      >
+      <img
+        class="hero__logo hero__logo--mobile"
+        src="assets/GPH-Logo-Wht - Mbl.png?v=3"
+        alt="Granada Production House"
+        width="320"
+        height="200"
+      >
       <p class="hero__title">Coming Soon</p>
     </div>
   </main>
