@@ -74,14 +74,10 @@
 
     .hero__logo {
       display: block;
-      width: min(90vw, 720px);
-      margin-bottom: 2rem;
-    }
-
-    .hero__logo img {
-      display: block;
-      width: 100%;
+      width: auto;
+      max-width: min(90vw, 720px);
       height: auto;
+      margin-bottom: 2rem;
       filter: drop-shadow(0 2px 24px rgba(0, 0, 0, 0.5));
     }
 
@@ -111,7 +107,7 @@
       }
 
       .hero__logo {
-        width: min(85vw, 320px);
+        max-width: min(85vw, 320px);
         margin-bottom: 1.5rem;
       }
 
@@ -136,15 +132,11 @@
         class="hero__logo hero__logo--desktop"
         src="assets/GPH-Logo-Wht.png?v=3"
         alt="Granada Production House"
-        width="720"
-        height="120"
       >
       <img
         class="hero__logo hero__logo--mobile"
         src="assets/GPH-Logo-Wht - Mbl.png?v=3"
         alt="Granada Production House"
-        width="320"
-        height="200"
       >
       <p class="hero__title">Coming Soon</p>
     </div>
