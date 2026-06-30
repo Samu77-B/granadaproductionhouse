@@ -373,7 +373,7 @@ button {
 
 .about__headline {
   font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.15rem);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
   font-weight: 600;
   line-height: 1.15;
   margin-bottom: clamp(2rem, 4vw, 3rem);
