@@ -203,6 +203,95 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  transform: scale(1.06);
+  will-change: transform;
+}
+
+.hero__slide--active img {
+  animation-duration: 6s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.hero__slide:nth-child(1).hero__slide--active img {
+  animation-name: hero-pan-right;
+}
+
+.hero__slide:nth-child(2).hero__slide--active img {
+  animation-name: hero-pan-left;
+}
+
+.hero__slide:nth-child(3).hero__slide--active img {
+  animation-name: hero-pan-up;
+}
+
+.hero__slide:nth-child(4).hero__slide--active img {
+  animation-name: hero-pan-down-right;
+}
+
+.hero__slide:nth-child(5).hero__slide--active img {
+  animation-name: hero-pan-up-left;
+}
+
+@keyframes hero-pan-right {
+  from {
+    transform: scale(1.06) translate3d(-1.5%, 0, 0);
+  }
+
+  to {
+    transform: scale(1.12) translate3d(1.5%, -1%, 0);
+  }
+}
+
+@keyframes hero-pan-left {
+  from {
+    transform: scale(1.06) translate3d(1.5%, 0, 0);
+  }
+
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes hero-pan-up {
+  from {
+    transform: scale(1.06) translate3d(0, 1%, 0);
+  }
+
+  to {
+    transform: scale(1.12) translate3d(-1%, -1.5%, 0);
+  }
+}
+
+@keyframes hero-pan-down-right {
+  from {
+    transform: scale(1.06) translate3d(-1%, -1%, 0);
+  }
+
+  to {
+    transform: scale(1.12) translate3d(1.5%, 1%, 0);
+  }
+}
+
+@keyframes hero-pan-up-left {
+  from {
+    transform: scale(1.06) translate3d(1%, 1%, 0);
+  }
+
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__slide img {
+    transform: none;
+    will-change: auto;
+  }
+
+  .hero__slide--active img {
+    animation: none;
+  }
 }
 
 .hero__overlay {
