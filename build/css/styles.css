@@ -304,9 +304,8 @@ button {
 
 .about__media img {
   width: min(100%, 420px);
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Footer */
