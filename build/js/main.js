@@ -23,11 +23,24 @@
     document.body.style.overflow = "";
   }
 
+  function restartPan(pan) {
+    if (!pan) return;
+
+    pan.style.animation = "none";
+    void pan.offsetWidth;
+    pan.style.removeProperty("animation");
+  }
+
   function showSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
 
     slides.forEach((slide, i) => {
-      slide.classList.toggle("hero__slide--active", i === currentSlide);
+      const isActive = i === currentSlide;
+      slide.classList.toggle("hero__slide--active", isActive);
+
+      if (isActive) {
+        restartPan(slide.querySelector(".hero__pan"));
+      }
     });
 
     dots.forEach((dot, i) => {
