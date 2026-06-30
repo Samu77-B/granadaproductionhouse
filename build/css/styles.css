@@ -190,6 +190,7 @@ button {
   position: absolute;
   inset: 0;
   opacity: 0;
+  overflow: hidden;
   transition: opacity 1.8s ease-in-out;
   pointer-events: none;
 }
@@ -200,95 +201,101 @@ button {
   pointer-events: auto;
 }
 
-.hero__slide img {
+.hero__pan {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center center;
   will-change: transform;
-  animation-duration: 18s;
+  animation-duration: 14s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  animation-play-state: paused;
 }
 
-.hero__slide:nth-child(1) img {
+.hero__slide--active .hero__pan {
+  animation-play-state: running;
+}
+
+.hero__slide:nth-child(1) .hero__pan {
   animation-name: hero-pan-right;
-  animation-delay: -2s;
 }
 
-.hero__slide:nth-child(2) img {
+.hero__slide:nth-child(2) .hero__pan {
   animation-name: hero-pan-left;
-  animation-delay: -5s;
 }
 
-.hero__slide:nth-child(3) img {
+.hero__slide:nth-child(3) .hero__pan {
   animation-name: hero-pan-up;
-  animation-delay: -8s;
 }
 
-.hero__slide:nth-child(4) img {
+.hero__slide:nth-child(4) .hero__pan {
   animation-name: hero-pan-down-right;
-  animation-delay: -11s;
 }
 
-.hero__slide:nth-child(5) img {
+.hero__slide:nth-child(5) .hero__pan {
   animation-name: hero-pan-up-left;
-  animation-delay: -14s;
+}
+
+.hero__pan img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
 }
 
 @keyframes hero-pan-right {
   from {
-    transform: scale(1.05) translate3d(-1.25%, 0, 0);
+    transform: scale(1.08) translate3d(-2%, 0, 0);
   }
 
   to {
-    transform: scale(1.1) translate3d(1.25%, -0.75%, 0);
+    transform: scale(1.14) translate3d(2%, -1.25%, 0);
   }
 }
 
 @keyframes hero-pan-left {
   from {
-    transform: scale(1.05) translate3d(1.25%, 0, 0);
+    transform: scale(1.08) translate3d(2%, 0, 0);
   }
 
   to {
-    transform: scale(1.1) translate3d(-1.25%, -0.75%, 0);
+    transform: scale(1.14) translate3d(-2%, -1.25%, 0);
   }
 }
 
 @keyframes hero-pan-up {
   from {
-    transform: scale(1.05) translate3d(0, 0.75%, 0);
+    transform: scale(1.08) translate3d(0, 1.25%, 0);
   }
 
   to {
-    transform: scale(1.1) translate3d(-0.75%, -1.25%, 0);
+    transform: scale(1.14) translate3d(-1.25%, -2%, 0);
   }
 }
 
 @keyframes hero-pan-down-right {
   from {
-    transform: scale(1.05) translate3d(-0.75%, -0.75%, 0);
+    transform: scale(1.08) translate3d(-1.25%, -1.25%, 0);
   }
 
   to {
-    transform: scale(1.1) translate3d(1.25%, 0.75%, 0);
+    transform: scale(1.14) translate3d(2%, 1.25%, 0);
   }
 }
 
 @keyframes hero-pan-up-left {
   from {
-    transform: scale(1.05) translate3d(0.75%, 0.75%, 0);
+    transform: scale(1.08) translate3d(1.25%, 1.25%, 0);
   }
 
   to {
-    transform: scale(1.1) translate3d(-1.25%, -1.25%, 0);
+    transform: scale(1.14) translate3d(-2%, -2%, 0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__slide img {
+  .hero__pan {
     transform: none;
     will-change: auto;
     animation: none;
@@ -466,6 +473,18 @@ button {
   color: rgba(244, 240, 234, 0.62);
 }
 
+.site-footer__credit {
+  margin-top: 0.75rem;
+}
+
+.site-footer__credit a {
+  color: rgba(244, 240, 234, 0.82);
+}
+
+.site-footer__credit a:hover {
+  color: #fff;
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
@@ -498,7 +517,7 @@ button {
     max-width: 72px;
   }
 
-  .hero__slide img {
+  .hero__pan img {
     object-position: 65% center;
   }
 
