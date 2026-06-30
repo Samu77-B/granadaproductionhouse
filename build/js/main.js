@@ -23,15 +23,6 @@
     document.body.style.overflow = "";
   }
 
-  function restartSlidePan(slide) {
-    const img = slide.querySelector("img");
-    if (!img) return;
-
-    img.style.animation = "none";
-    void img.offsetWidth;
-    img.style.animation = "";
-  }
-
   function showSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
 
@@ -42,8 +33,6 @@
     dots.forEach((dot, i) => {
       dot.classList.toggle("hero__dot--active", i === currentSlide);
     });
-
-    restartSlidePan(slides[currentSlide]);
   }
 
   function nextSlide() {
