@@ -10,6 +10,11 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --site-gutter: clamp(1.5rem, 6vw, 5rem);
+  --site-max: 1180px;
+}
+
 body {
   font-family: "freight-text-pro", "FreightText Pro", "freight-display-pro", "Freight Display Pro", Georgia, "Times New Roman", serif;
   font-weight: 400;
@@ -320,7 +325,7 @@ button {
 .hero__copy {
   position: absolute;
   z-index: 3;
-  left: clamp(1.5rem, 6vw, 5rem);
+  left: calc(var(--site-gutter) + max(0px, (100vw - 2 * var(--site-gutter) - var(--site-max)) / 2));
   bottom: clamp(3rem, 12vh, 6rem);
   max-width: min(34rem, 78vw);
   font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
@@ -358,7 +363,7 @@ button {
 
 .about {
   background: #fff;
-  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+  padding: clamp(3.5rem, 8vw, 6rem) var(--site-gutter);
 }
 
 .about__grid {
@@ -366,7 +371,7 @@ button {
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: start;
-  max-width: 1180px;
+  max-width: var(--site-max);
   margin: 0 auto;
   overflow: visible;
 }
@@ -503,6 +508,7 @@ button {
   overflow: hidden;
   color: #fff;
   background: #12100e;
+  padding: 0 var(--site-gutter);
 }
 
 .page-hero__media {
@@ -536,9 +542,9 @@ button {
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
-  max-width: 1180px;
+  max-width: var(--site-max);
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 6vw, 5rem) clamp(3rem, 8vh, 5rem);
+  padding: 0 0 clamp(3rem, 8vh, 5rem);
 }
 
 .page-hero__eyebrow {
@@ -568,11 +574,11 @@ button {
 
 .page-section {
   background: #fff;
-  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+  padding: clamp(3.5rem, 8vw, 6rem) var(--site-gutter);
 }
 
 .page-section__inner {
-  max-width: 1180px;
+  max-width: var(--site-max);
   margin: 0 auto;
 }
 
@@ -886,10 +892,10 @@ button {
   }
 
   .hero__copy {
-    left: 1.5rem;
-    right: 1.5rem;
+    left: calc(var(--site-gutter) + max(0px, (100vw - 2 * var(--site-gutter) - var(--site-max)) / 2));
+    right: auto;
     bottom: clamp(4rem, 10vh, 5.5rem);
-    max-width: none;
+    max-width: min(34rem, calc(100vw - 2 * var(--site-gutter)));
     font-size: clamp(1.15rem, 3.5vw, 1.5rem);
   }
 
@@ -931,9 +937,10 @@ button {
   }
 
   .hero__copy {
-    left: 1.25rem;
-    right: 1.25rem;
+    left: calc(var(--site-gutter) + max(0px, (100vw - 2 * var(--site-gutter) - var(--site-max)) / 2));
+    right: auto;
     bottom: 4.25rem;
+    max-width: min(34rem, calc(100vw - 2 * var(--site-gutter)));
     font-size: 1.1rem;
     line-height: 1.4;
   }
