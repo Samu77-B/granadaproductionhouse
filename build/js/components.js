@@ -43,11 +43,13 @@
         </a>
 
         <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
-          <span class="nav-toggle__frame">
-            <span class="nav-toggle__line"></span>
-            <span class="nav-toggle__line"></span>
-            <span class="nav-toggle__line"></span>
-          </span>
+          <img
+            class="nav-toggle__icon"
+            src="${base}assets/GPH-Menu-Hamburger.png"
+            alt=""
+            width="52"
+            height="52"
+          >
         </button>
       </header>
 

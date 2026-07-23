@@ -15,12 +15,14 @@
   function openNav() {
     nav.classList.add("site-nav--open");
     navToggle.setAttribute("aria-expanded", "true");
+    navToggle.setAttribute("aria-label", "Close menu");
     document.body.style.overflow = "hidden";
   }
 
   function closeNav() {
     nav.classList.remove("site-nav--open");
     navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open menu");
     document.body.style.overflow = "";
   }
 
