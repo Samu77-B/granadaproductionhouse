@@ -1,5 +1,5 @@
 (function () {
-  const base = document.body.dataset.base || "./";
+  const base = document.body.dataset.base || "/build/";
 
   const navLinks = [
     { href: "index.html", label: "Home" },
