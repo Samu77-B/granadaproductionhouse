@@ -120,7 +120,13 @@
     document.querySelectorAll(coverSelector).forEach((img) => {
       ensureClipContainer(img);
       img.classList.add("parallax-img", "parallax-img--cover");
-      parallaxItems.push({ img, strength: img.closest(".page-hero__media") ? 0.22 : 0.14 });
+
+      let strength = 0.14;
+      if (img.closest(".page-hero__media")) {
+        strength = window.innerWidth <= 767 ? 0.06 : 0.16;
+      }
+
+      parallaxItems.push({ img, strength });
     });
 
     document.querySelectorAll(softSelector).forEach((img) => {
