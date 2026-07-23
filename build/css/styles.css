@@ -825,6 +825,120 @@ button {
   background: #12100e;
 }
 
+.gallery-thumb,
+.gallery-thumb-wrap {
+  cursor: zoom-in;
+}
+
+.gallery-thumb:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Lightbox */
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.92);
+}
+
+.lightbox__figure {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: min(1200px, 100%);
+  max-height: calc(100vh - 4rem);
+  margin: 0;
+}
+
+.lightbox__image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 7rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.lightbox__caption {
+  color: rgba(244, 240, 234, 0.82);
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 48ch;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: background-color 0.2s ease;
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.lightbox__close {
+  top: clamp(1rem, 3vw, 1.5rem);
+  right: clamp(1rem, 3vw, 1.5rem);
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox__nav--prev {
+  left: clamp(0.75rem, 3vw, 1.5rem);
+}
+
+.lightbox__nav--next {
+  right: clamp(0.75rem, 3vw, 1.5rem);
+}
+
+.lightbox__nav[hidden],
+.lightbox__caption:empty {
+  display: none;
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
