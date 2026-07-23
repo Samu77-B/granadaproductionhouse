@@ -7,9 +7,8 @@
   let currentSlide = 0;
   let slideTimer;
 
-  if (!header || !nav || !navToggle) return;
-
   function setHeaderState() {
+    if (!header) return;
     header.classList.toggle("site-header--scrolled", window.scrollY > 40);
   }
 
@@ -62,28 +61,118 @@
     slideTimer = setInterval(nextSlide, 6000);
   }
 
-  navToggle.addEventListener("click", () => {
-    if (nav.classList.contains("site-nav--open")) {
-      closeNav();
-    } else {
-      openNav();
-    }
-  });
+  function initNav() {
+    if (!header || !nav || !navToggle) return;
 
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeNav);
-  });
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      showSlide(index);
-      startCarousel();
+    navToggle.addEventListener("click", () => {
+      if (nav.classList.contains("site-nav--open")) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
-  });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeNav);
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startCarousel();
+      });
+    });
+  }
+
+  function initParallax() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const coverSelector = [
+      ".hero__pan img",
+      ".page-hero__media img",
+      ".page-section__media img",
+      ".team-card__image img",
+      ".page-card__image img",
+      ".work-grid__item img",
+      ".location-gallery img",
+    ].join(", ");
+
+    const softSelector = ".about__media img";
+    const parallaxItems = [];
+    const hero = document.querySelector(".hero");
+    const heroSlides = document.querySelector(".hero__slides");
+
+    function ensureClipContainer(img) {
+      const parent = img.parentElement;
+      if (!parent || parent.classList.contains("parallax-wrap")) return;
+
+      const overflow = window.getComputedStyle(parent).overflow;
+      if (overflow === "visible" || overflow === "clip") {
+        const wrap = document.createElement("div");
+        wrap.className = "parallax-wrap";
+        parent.insertBefore(wrap, img);
+        wrap.appendChild(img);
+      }
+    }
+
+    document.querySelectorAll(coverSelector).forEach((img) => {
+      ensureClipContainer(img);
+      img.classList.add("parallax-img", "parallax-img--cover");
+      parallaxItems.push({ img, strength: img.closest(".page-hero__media") ? 0.22 : 0.14 });
+    });
+
+    document.querySelectorAll(softSelector).forEach((img) => {
+      img.classList.add("parallax-img", "parallax-img--soft");
+      parallaxItems.push({ img, strength: 0.08 });
+    });
+
+    if (hero && heroSlides) {
+      parallaxItems.push({ hero, heroSlides });
+    }
+
+    function updateParallax() {
+      const viewportHeight = window.innerHeight;
+
+      parallaxItems.forEach((item) => {
+        if (item.heroSlides) {
+          const rect = item.hero.getBoundingClientRect();
+          if (rect.bottom <= 0 || rect.top >= viewportHeight) return;
+          item.heroSlides.style.transform = `translate3d(0, ${window.scrollY * 0.35}px, 0)`;
+          return;
+        }
+
+        const { img, strength } = item;
+        const rect = img.getBoundingClientRect();
+
+        if (rect.bottom < 0 || rect.top > viewportHeight) return;
+
+        const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
+        const shift = centerOffset * strength;
+        img.style.setProperty("--parallax-y", `${shift}px`);
+      });
+    }
+
+    let parallaxTicking = false;
+
+    function onParallaxScroll() {
+      if (parallaxTicking) return;
+      parallaxTicking = true;
+      requestAnimationFrame(() => {
+        updateParallax();
+        parallaxTicking = false;
+      });
+    }
+
+    window.addEventListener("scroll", onParallaxScroll, { passive: true });
+    window.addEventListener("resize", updateParallax);
+    updateParallax();
+  }
 
   window.addEventListener("scroll", setHeaderState, { passive: true });
   window.addEventListener("resize", setHeaderState);
 
+  initNav();
+  initParallax();
   setHeaderState();
   showSlide(0);
   startCarousel();
