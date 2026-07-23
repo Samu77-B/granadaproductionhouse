@@ -90,8 +90,6 @@
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const coverSelector = [
-      ".hero__pan img",
-      ".page-hero__media img",
       ".page-section__media img",
       ".team-card__image img",
       ".page-card__image img",
@@ -122,10 +120,6 @@
       img.classList.add("parallax-img", "parallax-img--cover");
 
       let strength = 0.14;
-      if (img.closest(".page-hero__media")) {
-        strength = window.innerWidth <= 767 ? 0.06 : 0.16;
-      }
-
       parallaxItems.push({ img, strength });
     });
 
