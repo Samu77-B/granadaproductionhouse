@@ -488,6 +488,323 @@ button {
   color: #fff;
 }
 
+.site-footer__locations {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* Inner pages */
+
+.page-hero {
+  position: relative;
+  height: min(72vh, 720px);
+  min-height: 420px;
+  overflow: hidden;
+  color: #fff;
+  background: #12100e;
+}
+
+.page-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero__media img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.page-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 8, 6, 0.62) 0%,
+    rgba(10, 8, 6, 0.28) 50%,
+    rgba(10, 8, 6, 0.18) 100%
+  );
+}
+
+.page-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 6vw, 5rem) clamp(3rem, 8vh, 5rem);
+}
+
+.page-hero__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  opacity: 0.85;
+}
+
+.page-hero__title {
+  font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  max-width: 14ch;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+.page-hero__lede {
+  margin-top: 1.25rem;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+}
+
+.page-section {
+  background: #fff;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+}
+
+.page-section__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.page-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.page-section__headline {
+  font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 22ch;
+}
+
+.page-section__subhead {
+  font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 700;
+  margin: clamp(1.75rem, 3vw, 2.5rem) 0 0.75rem;
+}
+
+.page-section__text {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.7;
+  color: #2a2a2a;
+  max-width: 48ch;
+}
+
+.page-section__text + .page-section__text {
+  margin-top: 1.15rem;
+}
+
+.page-section__media img {
+  width: 100%;
+  max-width: 460px;
+  margin-left: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.page-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.page-card {
+  display: block;
+  color: inherit;
+}
+
+.page-card__image {
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #12100e;
+}
+
+.page-card__image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.page-card:hover .page-card__image img {
+  transform: scale(1.04);
+}
+
+.page-card__title {
+  font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.page-card__text {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #2a2a2a;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.team-card__image {
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #ece7e0;
+}
+
+.team-card__image img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.team-card__name {
+  font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.team-card__role {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.team-card__bio {
+  margin-top: 0.75rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #2a2a2a;
+}
+
+.services-list {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.service-item {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(18, 16, 14, 0.12);
+}
+
+.service-item__title {
+  font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 600;
+  margin-bottom: 0.55rem;
+}
+
+.service-item__text {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #2a2a2a;
+  max-width: 52ch;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.contact-details p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2a2a2a;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(18, 16, 14, 0.2);
+  background: #fff;
+  font: inherit;
+  color: #1a1a1a;
+}
+
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form button {
+  justify-self: start;
+  padding: 0.9rem 1.6rem;
+  background: #12100e;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.contact-form button:hover {
+  background: #2a2622;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.work-grid__item {
+  overflow: hidden;
+  background: #12100e;
+  margin: 0;
+}
+
+.work-grid__item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.work-grid__item:hover img {
+  transform: scale(1.03);
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
@@ -507,6 +824,22 @@ button {
   .site-footer__grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+  }
+
+  .page-section__grid,
+  .contact-grid,
+  .page-cards,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-section__media img {
+    margin-left: 0;
+    max-width: min(100%, 420px);
   }
 }
 
@@ -536,6 +869,19 @@ button {
   .hero__pan img {
     object-position: 65% center;
   }
+
+  .page-hero__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 8, 6, 0.35) 0%,
+      rgba(10, 8, 6, 0.25) 40%,
+      rgba(10, 8, 6, 0.7) 100%
+    );
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 767px) {
@@ -564,5 +910,22 @@ button {
     left: 50%;
     transform: translateX(-50%);
     bottom: 1.25rem;
+  }
+
+  .page-hero {
+    min-height: 380px;
+    height: 62vh;
+  }
+
+  .page-hero__title {
+    max-width: none;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
   }
 }

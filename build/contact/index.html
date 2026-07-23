@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Granada Production House</title>
+  <meta name="description" content="Contact Granada Production House for fashion, commercial, editorial, film and event production enquiries.">
+  <link rel="icon" href="../assets/GPH-Logo-Wht - Fav.png" type="image/png">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-base="../">
+  <div id="site-header"></div>
+
+  <section class="page-hero">
+    <div class="page-hero__media">
+      <img src="../assets/HomePage/Homepage%20loop1.png" alt="Granada city location">
+    </div>
+    <div class="page-hero__overlay" aria-hidden="true"></div>
+    <div class="page-hero__content">
+      <p class="page-hero__eyebrow">Contact</p>
+      <h1 class="page-hero__title">Let's talk production</h1>
+      <p class="page-hero__lede">Tell us about your next campaign, shoot, or event — we're ready to help shape it.</p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="page-section__inner contact-grid">
+      <div class="contact-details">
+        <h2 class="page-section__headline">Get in touch</h2>
+        <p>
+          Granada, Spain<br>
+          <a href="mailto:hola@granadaproductionhouse.com">hola@granadaproductionhouse.com</a><br>
+          <a href="https://www.instagram.com/granadaproductionhouse" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </p>
+        <h3 class="page-section__subhead">What to include</h3>
+        <p class="page-section__text">
+          Share your shoot dates, preferred locations, creative brief, and any print or film requirements. The more context you give us, the faster we can assemble the right production plan.
+        </p>
+      </div>
+
+      <form class="contact-form" action="mailto:hola@granadaproductionhouse.com" method="post" enctype="text/plain">
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Project type
+          <select name="project">
+            <option>Fashion shoot</option>
+            <option>Commercial / Editorial</option>
+            <option>Advertising print</option>
+            <option>Film production</option>
+            <option>Event</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          Message
+          <textarea name="message" required placeholder="Tell us about your project..."></textarea>
+        </label>
+        <button type="submit">Send enquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

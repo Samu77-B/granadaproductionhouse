@@ -7,6 +7,8 @@
   let currentSlide = 0;
   let slideTimer;
 
+  if (!header || !nav || !navToggle) return;
+
   function setHeaderState() {
     header.classList.toggle("site-header--scrolled", window.scrollY > 40);
   }
@@ -32,6 +34,8 @@
   }
 
   function showSlide(index) {
+    if (!slides.length) return;
+
     currentSlide = (index + slides.length) % slides.length;
 
     slides.forEach((slide, i) => {
@@ -53,6 +57,7 @@
   }
 
   function startCarousel() {
+    if (!slides.length) return;
     clearInterval(slideTimer);
     slideTimer = setInterval(nextSlide, 6000);
   }
