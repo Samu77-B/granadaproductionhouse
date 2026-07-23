@@ -45,7 +45,7 @@
         <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
           <img
             class="nav-toggle__icon"
-            src="${base}assets/GPH-Menu-Hamburger.png"
+            src="${base}assets/GPH-Menu-Hamburger.png?v=2"
             alt=""
             width="52"
             height="52"
