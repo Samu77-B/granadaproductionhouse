@@ -91,7 +91,6 @@
 
     const coverSelector = [
       ".page-section__media img",
-      ".team-card__image img",
       ".page-card__image img",
       ".work-grid__item img",
       ".location-gallery img",
