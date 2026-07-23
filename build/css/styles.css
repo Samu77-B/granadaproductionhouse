@@ -13,6 +13,8 @@ html {
 :root {
   --site-gutter: clamp(1.5rem, 6vw, 5rem);
   --site-max: 1180px;
+  --site-content-width: min(var(--site-max), calc(100% - 2 * var(--site-gutter)));
+  --site-content-offset: max(var(--site-gutter), calc((100% - var(--site-max)) / 2));
 }
 
 body {
@@ -322,9 +324,10 @@ button {
 .hero__copy {
   position: absolute;
   z-index: 3;
-  left: calc(var(--site-gutter) + max(0px, (100vw - 2 * var(--site-gutter) - var(--site-max)) / 2));
+  left: var(--site-content-offset);
   bottom: clamp(3rem, 12vh, 6rem);
-  max-width: min(34rem, 78vw);
+  width: var(--site-content-width);
+  max-width: min(34rem, calc(100vw - 2 * var(--site-gutter)));
   font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
   font-size: clamp(1.35rem, 2.4vw, 2rem);
   font-weight: 300;
@@ -547,9 +550,11 @@ button {
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
+  width: var(--site-content-width);
   max-width: var(--site-max);
-  margin: 0 auto;
-  padding: 0 var(--site-gutter) clamp(3rem, 8vh, 5rem);
+  margin-left: var(--site-content-offset);
+  margin-right: auto;
+  padding: 0 0 clamp(3rem, 8vh, 5rem);
 }
 
 .page-hero__eyebrow {
@@ -897,8 +902,9 @@ button {
   }
 
   .hero__copy {
-    left: calc(var(--site-gutter) + max(0px, (100vw - 2 * var(--site-gutter) - var(--site-max)) / 2));
+    left: var(--site-content-offset);
     right: auto;
+    width: var(--site-content-width);
     bottom: clamp(4rem, 10vh, 5.5rem);
     max-width: min(34rem, calc(100vw - 2 * var(--site-gutter)));
     font-size: clamp(1.15rem, 3.5vw, 1.5rem);
@@ -942,8 +948,9 @@ button {
   }
 
   .hero__copy {
-    left: calc(var(--site-gutter) + max(0px, (100vw - 2 * var(--site-gutter) - var(--site-max)) / 2));
+    left: var(--site-content-offset);
     right: auto;
+    width: var(--site-content-width);
     bottom: 4.25rem;
     max-width: min(34rem, calc(100vw - 2 * var(--site-gutter)));
     font-size: 1.1rem;
