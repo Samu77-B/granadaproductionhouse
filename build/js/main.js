@@ -89,42 +89,13 @@
   function initParallax() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const coverSelector = [
-      ".page-section__media img",
-      ".page-card__image img",
-      ".work-grid__item img",
-      ".location-gallery img",
-    ].join(", ");
-
-    const softSelector = ".about__media img";
     const parallaxItems = [];
     const hero = document.querySelector(".hero");
     const heroSlides = document.querySelector(".hero__slides");
 
-    function ensureClipContainer(img) {
-      const parent = img.parentElement;
-      if (!parent || parent.classList.contains("parallax-wrap")) return;
-
-      const overflow = window.getComputedStyle(parent).overflow;
-      if (overflow === "visible" || overflow === "clip") {
-        const wrap = document.createElement("div");
-        wrap.className = "parallax-wrap";
-        parent.insertBefore(wrap, img);
-        wrap.appendChild(img);
-      }
-    }
-
-    document.querySelectorAll(coverSelector).forEach((img) => {
-      ensureClipContainer(img);
-      img.classList.add("parallax-img", "parallax-img--cover");
-
-      let strength = 0.14;
-      parallaxItems.push({ img, strength });
-    });
-
-    document.querySelectorAll(softSelector).forEach((img) => {
-      img.classList.add("parallax-img", "parallax-img--soft");
-      parallaxItems.push({ img, strength: 0.08 });
+    document.querySelectorAll(".page-hero__media img").forEach((img) => {
+      img.classList.add("parallax-img", "parallax-img--hero");
+      parallaxItems.push({ img, strength: 0.1 });
     });
 
     if (hero && heroSlides) {
