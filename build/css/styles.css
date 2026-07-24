@@ -227,6 +227,12 @@ button {
   object-position: center center;
 }
 
+/* Portrait-heavy hero slides — anchor crop toward the top so heads stay in frame */
+.hero__slide:nth-child(3) .hero__pan img,
+.hero__slide:nth-child(5) .hero__pan img {
+  object-position: center 18%;
+}
+
 @keyframes hero-pan-right {
   from {
     transform: scale(1.08) translate3d(-2%, 0, 0);
@@ -249,11 +255,11 @@ button {
 
 @keyframes hero-pan-up {
   from {
-    transform: scale(1.08) translate3d(0, 1.25%, 0);
+    transform: scale(1.08) translate3d(0, 0.75%, 0);
   }
 
   to {
-    transform: scale(1.14) translate3d(-1.25%, -2%, 0);
+    transform: scale(1.12) translate3d(-1%, -0.75%, 0);
   }
 }
 
@@ -269,11 +275,11 @@ button {
 
 @keyframes hero-pan-up-left {
   from {
-    transform: scale(1.08) translate3d(1.25%, 1.25%, 0);
+    transform: scale(1.08) translate3d(1.25%, 0.75%, 0);
   }
 
   to {
-    transform: scale(1.14) translate3d(-2%, -2%, 0);
+    transform: scale(1.12) translate3d(-1.5%, -0.75%, 0);
   }
 }
 
@@ -1009,6 +1015,11 @@ body.lightbox-open {
     object-position: 65% center;
   }
 
+  .hero__slide:nth-child(3) .hero__pan img,
+  .hero__slide:nth-child(5) .hero__pan img {
+    object-position: center 15%;
+  }
+
   .page-hero__overlay {
     background: linear-gradient(
       to bottom,
@@ -1035,6 +1046,11 @@ body.lightbox-open {
 
   .hero__pan img {
     object-position: 62% center;
+  }
+
+  .hero__slide:nth-child(3) .hero__pan img,
+  .hero__slide:nth-child(5) .hero__pan img {
+    object-position: center 12%;
   }
 
   .hero__copy {
