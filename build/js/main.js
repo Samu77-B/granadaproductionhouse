@@ -164,13 +164,11 @@
       <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Next image">&#8250;</button>
       <figure class="lightbox__figure">
         <img class="lightbox__image" src="" alt="">
-        <figcaption class="lightbox__caption"></figcaption>
       </figure>
     `;
     document.body.appendChild(lightbox);
 
     const image = lightbox.querySelector(".lightbox__image");
-    const caption = lightbox.querySelector(".lightbox__caption");
     const prevBtn = lightbox.querySelector(".lightbox__nav--prev");
     const nextBtn = lightbox.querySelector(".lightbox__nav--next");
     const closeBtn = lightbox.querySelector(".lightbox__close");
@@ -191,8 +189,7 @@
 
       activeIndex = index;
       image.src = img.currentSrc || img.src;
-      image.alt = img.alt;
-      caption.textContent = img.alt || "";
+      image.alt = img.getAttribute("alt") || "";
       const showNav = activeGroup.length > 1;
       prevBtn.hidden = !showNav;
       nextBtn.hidden = !showNav;
