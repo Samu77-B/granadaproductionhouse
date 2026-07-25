@@ -630,17 +630,18 @@ button {
 }
 
 .page-section__intro {
-  background: #12100e;
-  color: #fff;
-  padding: clamp(2rem, 5vw, 3.25rem);
+  color: #1a1a1a;
+  padding: 0;
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .page-section__intro .page-hero__eyebrow {
-  color: inherit;
+  color: #3d3d3d;
+  opacity: 1;
 }
 
 .page-section__intro .page-hero__title {
+  color: #1a1a1a;
   font-size: clamp(2rem, 4.5vw, 3.35rem);
   max-width: 14ch;
   text-shadow: none;
