@@ -518,6 +518,10 @@ button {
   object-position: center center;
 }
 
+.page-hero--team .page-hero__media img {
+  object-position: center 38%;
+}
+
 .page-hero__placeholder {
   position: absolute;
   inset: 0;
@@ -1209,6 +1213,10 @@ body.lightbox-open {
   .page-hero {
     min-height: 380px;
     height: 62vh;
+  }
+
+  .page-hero--team .page-hero__media img {
+    object-position: center 30%;
   }
 
   .page-hero__title {
