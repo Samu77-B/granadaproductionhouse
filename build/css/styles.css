@@ -1071,6 +1071,16 @@ body.lightbox-open {
     grid-row: auto;
   }
 
+  .page-section--about {
+    padding-left: clamp(1.85rem, 6.5vw, 2.75rem);
+    padding-right: clamp(1.85rem, 6.5vw, 2.75rem);
+  }
+
+  .page-section--about .page-section__intro .page-hero__title {
+    max-width: 100%;
+    font-size: clamp(1.875rem, 7.25vw, 2.65rem);
+  }
+
   .work-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
