@@ -80,6 +80,11 @@ button {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
+.page-about .site-header {
+  background: rgba(18, 16, 14, 0.92);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .site-header__logo {
   width: auto;
   max-width: min(42vw, 220px);
@@ -573,6 +578,35 @@ button {
   padding-top: clamp(6.5rem, 14vw, 9rem);
 }
 
+.page-section--about .page-section__about {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  row-gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.page-section--about .page-section__intro {
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 0;
+}
+
+.page-section--about .page-section__media {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.page-section--about .page-section__body {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.page-section--about .page-section__media-placeholder {
+  margin-left: 0;
+  margin-right: auto;
+}
+
 .page-section__inner {
   max-width: var(--site-max);
   margin: 0 auto;
@@ -1023,6 +1057,17 @@ body.lightbox-open {
   .page-cards,
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-section--about .page-section__about {
+    grid-template-columns: 1fr;
+  }
+
+  .page-section--about .page-section__intro,
+  .page-section--about .page-section__media,
+  .page-section--about .page-section__body {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .work-grid {
