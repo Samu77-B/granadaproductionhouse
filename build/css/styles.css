@@ -513,21 +513,6 @@ button {
   object-position: center center;
 }
 
-.page-hero__placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #737373;
-  color: #fff;
-  font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 600;
-  letter-spacing: 0.35em;
-  text-indent: 0.35em;
-}
-
 .page-hero__overlay {
   position: absolute;
   inset: 0;
@@ -584,6 +569,10 @@ button {
   padding: clamp(3.5rem, 8vw, 6rem) var(--site-gutter);
 }
 
+.page-section--no-hero {
+  padding-top: clamp(6.5rem, 14vw, 9rem);
+}
+
 .page-section__inner {
   max-width: var(--site-max);
   margin: 0 auto;
@@ -600,9 +589,27 @@ button {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
 }
 
-.page-section__grid--image-left .page-section__media img {
+.page-section__grid--image-left .page-section__media img,
+.page-section__grid--image-left .page-section__media-placeholder {
   margin-left: 0;
   margin-right: auto;
+}
+
+.page-section__intro {
+  background: #12100e;
+  color: #fff;
+  padding: clamp(2rem, 5vw, 3.25rem);
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.page-section__intro .page-hero__eyebrow {
+  color: inherit;
+}
+
+.page-section__intro .page-hero__title {
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
+  max-width: 14ch;
+  text-shadow: none;
 }
 
 .page-section__headline {
@@ -643,6 +650,22 @@ button {
   margin-left: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
+}
+
+.page-section__media-placeholder {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #737373;
+  color: #fff;
+  font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
 }
 
 .page-cards {
@@ -1010,7 +1033,8 @@ body.lightbox-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .page-section__media img {
+  .page-section__media img,
+  .page-section__media-placeholder {
     margin-left: 0;
     max-width: min(100%, 420px);
   }
