@@ -937,6 +937,19 @@ button {
   margin: 0;
 }
 
+.work-grid__item--credited {
+  overflow: visible;
+  background: transparent;
+}
+
+.work-grid__caption {
+  margin-top: 0.65rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #2a2a2a;
+  text-align: left;
+}
+
 .work-grid__item img {
   width: 100%;
   aspect-ratio: 4 / 5;
