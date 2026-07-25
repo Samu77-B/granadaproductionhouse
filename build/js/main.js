@@ -188,8 +188,12 @@
       if (!img) return;
 
       activeIndex = index;
-      image.src = img.currentSrc || img.src;
+      image.src = img.getAttribute("src") || img.src;
       image.alt = img.getAttribute("alt") || "";
+      image.style.width = "";
+      image.style.height = "";
+      image.style.transform = "";
+      image.style.objectFit = "contain";
       const showNav = activeGroup.length > 1;
       prevBtn.hidden = !showNav;
       nextBtn.hidden = !showNav;
