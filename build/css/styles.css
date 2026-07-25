@@ -581,6 +581,15 @@ button {
   align-items: start;
 }
 
+.page-section__grid--image-left {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.page-section__grid--image-left .page-section__media img {
+  margin-left: 0;
+  margin-right: auto;
+}
+
 .page-section__headline {
   font-family: "freight-display-pro", "Freight Display Pro", Georgia, serif;
   font-size: clamp(1.65rem, 3vw, 2.35rem);
@@ -606,6 +615,11 @@ button {
 
 .page-section__text + .page-section__text {
   margin-top: 1.15rem;
+}
+
+.page-section__text-link {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
 }
 
 .page-section__media img {
