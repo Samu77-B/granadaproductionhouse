@@ -959,19 +959,25 @@ button {
   max-width: none;
 }
 
-.page-section__grid--location .page-section__media {
-  display: flex;
-  align-self: stretch;
-}
+@media (min-width: 901px) {
+  .page-section__grid--location > .page-section__media {
+    position: relative;
+    align-self: stretch;
+    min-height: 0;
+  }
 
-.page-section__grid--location .page-section__media img {
-  width: 100%;
-  max-width: 460px;
-  height: 100%;
-  min-height: clamp(22rem, 42vw, 32rem);
-  margin-left: auto;
-  aspect-ratio: unset;
-  object-fit: cover;
+  .page-section__grid--location > .page-section__media img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(100%, 460px);
+    max-width: 460px;
+    height: 100%;
+    margin: 0;
+    aspect-ratio: unset;
+    object-fit: cover;
+  }
 }
 
 .location-enquiry-panel__form > #location-enquiry-form {
@@ -1209,12 +1215,21 @@ body.lightbox-open {
     gap: 1.75rem;
   }
 
+  .page-section__grid--location .page-section__media {
+    position: static;
+    width: 100%;
+  }
+
   .page-section__grid--location .page-section__media img {
-    max-width: none;
-    margin-left: 0;
+    position: static;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
     min-height: auto;
-    aspect-ratio: 3 / 4;
     height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
   }
 
   .location-enquiry-panel .contact-form--location textarea {
