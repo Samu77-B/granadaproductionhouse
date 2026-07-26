@@ -34,7 +34,7 @@
     const selected = mount.dataset.location || "";
 
     mount.innerHTML = `
-      <form class="contact-form contact-form--short" action="mailto:enquiries@granadaproductionhouse.com" method="post" enctype="text/plain">
+      <form class="contact-form contact-form--short contact-form--location" action="mailto:enquiries@granadaproductionhouse.com" method="post" enctype="text/plain">
         <label>
           Name
           <input type="text" name="name" required autocomplete="name">
