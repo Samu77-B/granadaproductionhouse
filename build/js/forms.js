@@ -27,6 +27,16 @@
     });
   }
 
+  function syncLocationMediaHeights() {
+    const desktop = window.matchMedia("(min-width: 901px)").matches;
+    document.querySelectorAll(".page-section__grid--location").forEach((grid) => {
+      const panel = grid.querySelector(".location-enquiry-panel");
+      const media = grid.querySelector(".page-section__media");
+      if (!panel || !media) return;
+      media.style.minHeight = desktop ? panel.offsetHeight + "px" : "";
+    });
+  }
+
   function renderLocationEnquiryForm() {
     const mount = document.getElementById("location-enquiry-form");
     if (!mount) return;
@@ -56,8 +66,18 @@
     `;
 
     initLocationSelects();
+    syncLocationMediaHeights();
   }
 
   renderLocationEnquiryForm();
   initLocationSelects();
+
+  window.addEventListener("resize", syncLocationMediaHeights);
+  window.addEventListener("load", syncLocationMediaHeights);
+
+  if (typeof ResizeObserver !== "undefined") {
+    document.querySelectorAll(".location-enquiry-panel").forEach((panel) => {
+      new ResizeObserver(syncLocationMediaHeights).observe(panel);
+    });
+  }
 })();
