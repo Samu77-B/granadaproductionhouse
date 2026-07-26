@@ -1,0 +1,15 @@
+{
+  "name": "granadaproductionhouse",
+  "private": true,
+  "description": "Granada Production House website — static build + Sanity CMS",
+  "type": "module",
+  "scripts": {
+    "studio": "npm run dev --prefix studio",
+    "studio:build": "npm run build --prefix studio",
+    "studio:deploy": "npm run deploy --prefix studio",
+    "content:export": "node scripts/export-content.mjs"
+  },
+  "devDependencies": {
+    "@sanity/client": "^6.24.0"
+  }
+}

@@ -1,3 +1,10 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+node_modules/
+.env
+.env.local
+studio/.env
+content/sanity-export.json
+studio/dist/
