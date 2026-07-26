@@ -924,6 +924,22 @@ button {
   background: #2a2622;
 }
 
+.contact-form--short textarea {
+  min-height: 100px;
+}
+
+.location-enquiry {
+  border-top: 1px solid rgba(18, 16, 14, 0.08);
+}
+
+.location-enquiry__inner {
+  max-width: 32rem;
+}
+
+.location-enquiry__intro {
+  margin-bottom: 1.25rem;
+}
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
