@@ -15,7 +15,7 @@
     { href: "location/historic-moorish-architecture/", label: "Historic Moorish Architecture" },
     { href: "location/mediterranean-coastlines/", label: "Mediterranean Coastlines" },
     { href: "location/granada-city-center/", label: "Granada City Center & Modern Architecture" },
-    { href: "location/alpine-landscapes/", label: "Alpine Landscapes" },
+    { href: "location/alpine-and-vistas/", label: "Alpine and Vistas" },
   ];
 
   function resolve(path) {

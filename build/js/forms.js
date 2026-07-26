@@ -4,7 +4,7 @@
     { slug: "historic-and-traditional", label: "Historic and Traditional" },
     { slug: "mediterranean-coastlines", label: "Mediterranean Coastlines" },
     { slug: "granada-city-center", label: "Granada City Center & Modern Architecture" },
-    { slug: "alpine-landscapes", label: "Alpine Landscapes" },
+    { slug: "alpine-and-vistas", label: "Alpine and Vistas" },
   ];
 
   function locationOptionsHtml(selectedSlug, withPlaceholder) {
