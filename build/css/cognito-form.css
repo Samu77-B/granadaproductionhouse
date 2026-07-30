@@ -1,114 +1,49 @@
 /**
- * Granada Production House — Cognito Forms (form 90, seamless embed)
- * Follows Cognito v2 guidance: parent ID + .cog-cognito CSS variables.
- * https://www.cognitoforms.com/support/382/style-publish/css-styling-tips-for-v2
+ * Granada Production House — Cognito Forms (form 90, iframe embed)
+ * Loaded inside the iframe via Cognito.setCss() — selectors use #cognito.
+ * https://www.cognitoforms.com/support/168/style-publish/iframe-embedding
  */
 
-#gph-cognito-form,
-#location-enquiry-form {
-  display: block;
-  width: 100%;
-  overflow: visible;
-}
-
-#gph-cognito-form .cog-cognito,
-#location-enquiry-form .cog-cognito {
-  --font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
-  --header__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
-  --label__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
-  --input__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
-  --button-primary__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
-  --button-secondary__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
+#cognito .cog-cognito {
+  --font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --label__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --input__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --button-primary__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   --input__border-color: rgba(18, 16, 14, 0.2);
   --input__border-width: 1px;
   --input__border-radius: 0;
   --input__background-color: #fff;
   --input__color: #1a1a1a;
-  --input__padding-h: 1rem;
-  --input__padding-v: 0.85rem;
   --button__border-radius: 0;
   --border-radius: 0;
-  --gutter: 1rem;
   --highlight: #12100e;
   --highlight-reverse: #fff;
 }
 
-#gph-cognito-form .cog-form,
-#location-enquiry-form .cog-form {
+#cognito .cog-form {
   background: transparent;
   box-shadow: none;
   border: none;
-  padding: 0;
-  margin: 0;
-  max-width: none;
 }
 
-#gph-cognito-form .cog-header,
-#location-enquiry-form .cog-header {
+#cognito .cog-header {
   display: none;
 }
 
-#gph-cognito-form .cog-body,
-#location-enquiry-form .cog-body {
-  padding: 0;
-}
-
-/* Undo site .contact-form rules if that class is ever re-applied */
-#gph-cognito-form label,
-#location-enquiry-form label {
-  display: block;
-  gap: unset;
-}
-
-#gph-cognito-form input,
-#gph-cognito-form textarea,
-#gph-cognito-form select,
-#location-enquiry-form input,
-#location-enquiry-form textarea,
-#location-enquiry-form select {
-  width: auto;
-  padding: unset;
-  border: unset;
-  background: unset;
-  font: unset;
-  color: inherit;
-}
-
-#gph-cognito-form .cog-name .cog-field__content,
-#location-enquiry-form .cog-name .cog-field__content {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-@media (max-width: 600px) {
-  #gph-cognito-form .cog-name .cog-field__content,
-  #location-enquiry-form .cog-name .cog-field__content {
-    grid-template-columns: 1fr;
-  }
-}
-
-#gph-cognito-form .cog-button--primary,
-#location-enquiry-form .cog-button--primary {
+#cognito .cog-button--primary {
   background-color: #12100e;
   border-color: #12100e;
-  color: #fff;
   border-radius: 0;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 0.85rem;
-  padding: 0.9rem 1.6rem;
 }
 
-#gph-cognito-form .cog-button--primary:hover,
-#location-enquiry-form .cog-button--primary:hover {
+#cognito .cog-button--primary:hover {
   background-color: #2a2622;
   border-color: #2a2622;
 }
 
-#gph-cognito-form .cog-page__navigation,
-#location-enquiry-form .cog-page__navigation {
+#cognito .cog-page__navigation {
   justify-content: flex-start;
-  padding: 0;
-  margin-top: 0.25rem;
 }

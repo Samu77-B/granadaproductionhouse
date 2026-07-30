@@ -883,6 +883,18 @@ button {
   text-decoration: underline;
 }
 
+#gph-cognito-form,
+#location-enquiry-form {
+  width: 100%;
+}
+
+#gph-cognito-form iframe,
+#location-enquiry-form iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
 .contact-form:not(#gph-cognito-form):not(#location-enquiry-form) {
   display: grid;
   gap: 1rem;
