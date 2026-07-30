@@ -1,5 +1,13 @@
 (function () {
   const base = document.body.dataset.base || "/build/";
+  const ADOBE_FONTS_URL = "https://use.typekit.net/rmg3cin.css";
+
+  if (!document.querySelector('link[href*="typekit.net"]')) {
+    const fonts = document.createElement("link");
+    fonts.rel = "stylesheet";
+    fonts.href = ADOBE_FONTS_URL;
+    document.head.appendChild(fonts);
+  }
 
   const navLinks = [
     { href: "index.html", label: "Home" },

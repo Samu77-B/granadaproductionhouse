@@ -15,16 +15,31 @@
     "alpine-and-vistas": "Alpine and Vistas",
   };
 
+  const ADOBE_FONTS_URL = "https://use.typekit.net/rmg3cin.css";
+  const FREIGHT_SANS =
+    "'freight-sans-pro','Freight Sans Pro',system-ui,sans-serif";
+
   /**
    * Inline CSS — Cognito fetches external stylesheets from its servers, so local
    * preview URLs fail. Inline styles always apply inside the iframe.
    */
   const COGNITO_CSS_BASE =
+    "@import url('" +
+    ADOBE_FONTS_URL +
+    "');" +
     ":root #cognito .cog-cognito{" +
-    "--font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
-    "--label__font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
-    "--input__font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
-    "--button-primary__font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
+    "--font-family:" +
+    FREIGHT_SANS +
+    ";" +
+    "--label__font-family:" +
+    FREIGHT_SANS +
+    ";" +
+    "--input__font-family:" +
+    FREIGHT_SANS +
+    ";" +
+    "--button-primary__font-family:" +
+    FREIGHT_SANS +
+    ";" +
     "--input__border-color:rgba(18,16,14,0.2);--input__border-width:1px;" +
     "--input__border-radius:0;--input__background-color:#fff;--input__color:#1a1a1a;" +
     "--button__border-radius:0;--border-radius:0;--highlight:#12100e;--highlight-reverse:#fff}" +
@@ -34,7 +49,9 @@
     ":root #cognito .cog-label{display:block!important;position:static!important;" +
     "transform:none!important;opacity:1!important;visibility:visible!important;" +
     "color:#1a1a1a!important;font-size:0.95rem!important;font-weight:400!important;" +
-    "margin:0 0 0.4rem!important;padding:0!important;order:-1}" +
+    "font-family:" +
+    FREIGHT_SANS +
+    "!important;margin:0 0 0.4rem!important;padding:0!important;order:-1}" +
     ":root #cognito .cog-field{margin-bottom:1rem}" +
     ":root #cognito .cog-name .cog-field__content{display:grid;" +
     "grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem}" +

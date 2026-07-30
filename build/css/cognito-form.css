@@ -5,10 +5,10 @@
 
 :root #cognito .cog-cognito,
 :root #cognito .cog-90 {
-  --font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --label__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --input__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --button-primary__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
+  --label__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
+  --input__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
+  --button-primary__font-family: "freight-sans-pro", "Freight Sans Pro", system-ui, sans-serif;
   --input__border-color: rgba(18, 16, 14, 0.2);
   --input__border-width: 1px;
   --input__border-radius: 0;
