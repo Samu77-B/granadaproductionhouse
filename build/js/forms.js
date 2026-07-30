@@ -1,8 +1,10 @@
 (function () {
   const COGNITO_FORM_URL =
     "https://www.cognitoforms.com/f/nra8M7-W5EyCgKiqoaohEw/90";
-  const COGNITO_CSS = "/build/css/cognito-form.css?v=4";
-  const IFRAME_HEIGHT = "720";
+  const COGNITO_CSS_CONTACT = "/build/css/cognito-form.css?v=5";
+  const COGNITO_CSS_LOCATION = "/build/css/cognito-form-location.css?v=1";
+  const IFRAME_HEIGHT_CONTACT = "720";
+  const IFRAME_HEIGHT_LOCATION = "620";
 
   /** Cognito internal field name for location dropdown — update if prefill does not work. */
   const LOCATION_FIELD = "LocationType";
@@ -17,8 +19,8 @@
 
   let iframeScriptPromise = null;
 
-  function cognitoCssUrl() {
-    return new URL(COGNITO_CSS, window.location.href).href;
+  function cognitoCssUrl(path) {
+    return new URL(path, window.location.href).href;
   }
 
   function loadIframeScript() {
@@ -40,11 +42,11 @@
     return iframeScriptPromise;
   }
 
-  function configureIframe(iframe, locationLabel) {
+  function configureIframe(iframe, cssPath, locationLabel) {
     loadIframeScript()
       .then(() => {
         const cognito = Cognito("#" + iframe.id);
-        cognito.setCss(cognitoCssUrl());
+        cognito.setCss(cognitoCssUrl(cssPath));
         if (locationLabel) {
           cognito.prefill({ [LOCATION_FIELD]: locationLabel });
         }
@@ -57,10 +59,11 @@
   function mountCognitoForm(container) {
     if (!container || container.dataset.cognitoMounted === "true") return;
 
-    const iframeId =
-      container.id === "gph-cognito-form"
-        ? "gph-cognito-iframe"
-        : "gph-location-enquiry-iframe";
+    const isLocation = container.id === "location-enquiry-form";
+    const iframeId = isLocation
+      ? "gph-location-enquiry-iframe"
+      : "gph-cognito-iframe";
+    const cssPath = isLocation ? COGNITO_CSS_LOCATION : COGNITO_CSS_CONTACT;
 
     const slug = container.dataset.location;
     const locationLabel = slug ? LOCATION_LABELS[slug] : "";
@@ -74,12 +77,15 @@
     iframe.src = COGNITO_FORM_URL;
     iframe.allow = "payment";
     iframe.title = "Enquiry form";
-    iframe.setAttribute("height", IFRAME_HEIGHT);
+    iframe.setAttribute(
+      "height",
+      isLocation ? IFRAME_HEIGHT_LOCATION : IFRAME_HEIGHT_CONTACT
+    );
     iframe.style.border = "0";
     iframe.style.width = "100%";
 
     iframe.addEventListener("load", () => {
-      configureIframe(iframe, locationLabel);
+      configureIframe(iframe, cssPath, locationLabel);
     });
 
     container.appendChild(iframe);

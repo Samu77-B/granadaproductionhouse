@@ -1,10 +1,10 @@
 /**
  * Granada Production House — Cognito Forms (form 90, iframe embed)
- * Loaded inside the iframe via Cognito.setCss() — selectors use #cognito.
- * https://www.cognitoforms.com/support/168/style-publish/iframe-embedding
+ * https://www.cognitoforms.com/support/382/style-publish/css-styling-tips-for-v2
  */
 
-#cognito .cog-cognito {
+:root #cognito .cog-cognito,
+:root #cognito .cog-90 {
   --font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   --label__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   --input__font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -14,36 +14,94 @@
   --input__border-radius: 0;
   --input__background-color: #fff;
   --input__color: #1a1a1a;
+  --input__padding-h: 1rem;
+  --input__padding-v: 0.85rem;
   --button__border-radius: 0;
   --border-radius: 0;
   --highlight: #12100e;
   --highlight-reverse: #fff;
 }
 
-#cognito .cog-form {
+:root #cognito .cog-form {
   background: transparent;
   box-shadow: none;
   border: none;
 }
 
-#cognito .cog-header {
+:root #cognito .cog-header {
   display: none;
 }
 
-#cognito .cog-button--primary {
+/* Fill / Inset styles hide labels inside fields — force labels above inputs */
+:root #cognito .cog-field__content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+:root #cognito .cog-label {
+  display: block !important;
+  position: static !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #1a1a1a !important;
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 0.4rem !important;
+  padding: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  width: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  order: -1;
+}
+
+:root #cognito .cog-field {
+  margin-bottom: 1rem;
+}
+
+:root #cognito .cog-name .cog-field__content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+:root #cognito .cog-name > .cog-label {
+  grid-column: 1 / -1;
+  order: unset;
+}
+
+:root #cognito .cog-button--primary {
   background-color: #12100e;
   border-color: #12100e;
+  color: #fff;
   border-radius: 0;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 0.85rem;
+  padding: 0.9rem 1.6rem;
 }
 
-#cognito .cog-button--primary:hover {
+:root #cognito .cog-button--primary:hover {
   background-color: #2a2622;
   border-color: #2a2622;
 }
 
-#cognito .cog-page__navigation {
+:root #cognito .cog-page__navigation {
   justify-content: flex-start;
+  padding: 0;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 600px) {
+  :root #cognito .cog-name .cog-field__content {
+    grid-template-columns: 1fr;
+  }
 }

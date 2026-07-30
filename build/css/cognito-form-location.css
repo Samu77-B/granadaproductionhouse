@@ -1,0 +1,10 @@
+/**
+ * Location enquiry — form 90 with Project type hidden.
+ * Field order: Name, Email, Location type, Project type, Message.
+ */
+
+@import url("/build/css/cognito-form.css?v=5");
+
+:root #cognito .cog-field.cog-choice ~ .cog-field.cog-choice {
+  display: none !important;
+}
