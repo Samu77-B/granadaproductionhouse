@@ -42,8 +42,9 @@
     ";" +
     "--input__border-color:rgba(18,16,14,0.2);--input__border-width:1px;" +
     "--input__border-radius:0;--input__background-color:#fff;--input__color:#1a1a1a;" +
-    "--button__border-radius:0;--border-radius:0;--highlight:#12100e;--highlight-reverse:#fff}" +
-    ":root #cognito .cog-form{background:transparent;box-shadow:none;border:none}" +
+    "--button__border-radius:0;--border-radius:0;--highlight:#12100e;--highlight-reverse:#fff;" +
+    "--form__margins:0}" +
+    ":root #cognito .cog-form{background:transparent;box-shadow:none;border:none;max-width:100%!important;margin:0!important}" +
     ":root #cognito .cog-header{display:none!important}" +
     ":root #cognito .cog-field__content{display:flex;flex-direction:column;align-items:stretch}" +
     ":root #cognito .cog-label{display:block!important;position:static!important;" +

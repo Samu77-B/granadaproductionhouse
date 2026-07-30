@@ -21,6 +21,7 @@
 
   const locationLinks = [
     { href: "location/historic-moorish-architecture/", label: "Historic Moorish Architecture" },
+    { href: "location/historic-and-traditional/", label: "Historic and Traditional" },
     { href: "location/mediterranean-coastlines/", label: "Mediterranean Coastlines" },
     { href: "location/granada-city-center/", label: "Granada City Center & Modern Architecture" },
     { href: "location/alpine-and-vistas/", label: "Alpine and Vistas" },
