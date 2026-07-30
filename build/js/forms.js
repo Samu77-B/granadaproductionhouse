@@ -1,63 +1,47 @@
 (function () {
-  const LOCATION_TYPES = [
-    { slug: "historic-moorish-architecture", label: "Historic Moorish Architecture" },
-    { slug: "historic-and-traditional", label: "Historic and Traditional" },
-    { slug: "mediterranean-coastlines", label: "Mediterranean Coastlines" },
-    { slug: "granada-city-center", label: "Granada City Center & Modern Architecture" },
-    { slug: "alpine-and-vistas", label: "Alpine and Vistas" },
-  ];
+  const COGNITO_KEY = "nra8M7-W5EyCgKiqoaohEw";
+  const COGNITO_FORM_ID = "90";
 
-  function locationOptionsHtml(selectedSlug, withPlaceholder) {
-    let html = "";
-    if (withPlaceholder) {
-      html += `<option value="" disabled${selectedSlug ? "" : " selected"}>Select a location</option>`;
+  /** Cognito internal field name for location dropdown — update if prefill does not work. */
+  const LOCATION_FIELD = "LocationType";
+
+  const LOCATION_LABELS = {
+    "historic-moorish-architecture": "Historic Moorish Architecture",
+    "historic-and-traditional": "Historic and Traditional",
+    "mediterranean-coastlines": "Mediterranean Coastlines",
+    "granada-city-center": "Granada City Center & Modern Architecture",
+    "alpine-and-vistas": "Alpine and Vistas",
+  };
+
+  function mountCognitoForm(container) {
+    if (!container || container.dataset.cognitoMounted === "true") return;
+
+    container.classList.add("gph-cognito-form");
+    container.dataset.cognitoMounted = "true";
+    container.innerHTML = "";
+
+    const script = document.createElement("script");
+    script.src = "https://www.cognitoforms.com/f/seamless.js";
+    script.dataset.key = COGNITO_KEY;
+    script.dataset.form = COGNITO_FORM_ID;
+
+    const slug = container.dataset.location;
+    const locationLabel = slug ? LOCATION_LABELS[slug] : "";
+    if (locationLabel) {
+      script.dataset.entry = JSON.stringify({ [LOCATION_FIELD]: locationLabel });
     }
-    for (const loc of LOCATION_TYPES) {
-      const selected = loc.slug === selectedSlug ? " selected" : "";
-      html += `<option value="${loc.label}"${selected}>${loc.label}</option>`;
-    }
-    return html;
+
+    container.appendChild(script);
   }
 
-  function initLocationSelects() {
-    document.querySelectorAll("[data-location-select]").forEach((select) => {
-      const selected = select.dataset.selected || "";
-      const withPlaceholder = select.hasAttribute("data-location-placeholder");
-      select.innerHTML = locationOptionsHtml(selected, withPlaceholder);
-    });
+  function init() {
+    const containers = document.querySelectorAll("#gph-cognito-form, #location-enquiry-form");
+    containers.forEach(mountCognitoForm);
   }
 
-  function renderLocationEnquiryForm() {
-    const mount = document.getElementById("location-enquiry-form");
-    if (!mount) return;
-
-    const selected = mount.dataset.location || "";
-
-    mount.innerHTML = `
-      <form class="contact-form contact-form--short contact-form--location" action="mailto:enquiries@granadaproductionhouse.com" method="post" enctype="text/plain">
-        <label>
-          Name
-          <input type="text" name="name" required autocomplete="name">
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" required autocomplete="email">
-        </label>
-        <label>
-          Location type
-          <select name="location" data-location-select data-selected="${selected}" required></select>
-        </label>
-        <label>
-          Message
-          <textarea name="message" required placeholder="Brief details about your shoot…"></textarea>
-        </label>
-        <button type="submit">Send enquiry</button>
-      </form>
-    `;
-
-    initLocationSelects();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
-
-  renderLocationEnquiryForm();
-  initLocationSelects();
 })();
