@@ -1,10 +1,8 @@
 (function () {
   const COGNITO_FORM_URL =
     "https://www.cognitoforms.com/f/nra8M7-W5EyCgKiqoaohEw/90";
-  const COGNITO_CSS_CONTACT = "/build/css/cognito-form.css?v=5";
-  const COGNITO_CSS_LOCATION = "/build/css/cognito-form-location.css?v=1";
   const IFRAME_HEIGHT_CONTACT = "720";
-  const IFRAME_HEIGHT_LOCATION = "620";
+  const IFRAME_HEIGHT_LOCATION = "580";
 
   /** Cognito internal field name for location dropdown — update if prefill does not work. */
   const LOCATION_FIELD = "LocationType";
@@ -17,11 +15,43 @@
     "alpine-and-vistas": "Alpine and Vistas",
   };
 
-  let iframeScriptPromise = null;
+  /**
+   * Inline CSS — Cognito fetches external stylesheets from its servers, so local
+   * preview URLs fail. Inline styles always apply inside the iframe.
+   */
+  const COGNITO_CSS_BASE =
+    ":root #cognito .cog-cognito{" +
+    "--font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
+    "--label__font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
+    "--input__font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
+    "--button-primary__font-family:system-ui,-apple-system,'Segoe UI',sans-serif;" +
+    "--input__border-color:rgba(18,16,14,0.2);--input__border-width:1px;" +
+    "--input__border-radius:0;--input__background-color:#fff;--input__color:#1a1a1a;" +
+    "--button__border-radius:0;--border-radius:0;--highlight:#12100e;--highlight-reverse:#fff}" +
+    ":root #cognito .cog-form{background:transparent;box-shadow:none;border:none}" +
+    ":root #cognito .cog-header{display:none!important}" +
+    ":root #cognito .cog-field__content{display:flex;flex-direction:column;align-items:stretch}" +
+    ":root #cognito .cog-label{display:block!important;position:static!important;" +
+    "transform:none!important;opacity:1!important;visibility:visible!important;" +
+    "color:#1a1a1a!important;font-size:0.95rem!important;font-weight:400!important;" +
+    "margin:0 0 0.4rem!important;padding:0!important;order:-1}" +
+    ":root #cognito .cog-field{margin-bottom:1rem}" +
+    ":root #cognito .cog-name .cog-field__content{display:grid;" +
+    "grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem}" +
+    ":root #cognito .cog-name>.cog-label{grid-column:1/-1;order:unset}" +
+    ":root #cognito .cog-button--primary{background-color:#12100e!important;" +
+    "border-color:#12100e!important;color:#fff!important;border-radius:0!important;" +
+    "letter-spacing:0.06em!important;text-transform:uppercase!important;" +
+    "font-size:0.85rem!important;padding:0.9rem 1.6rem!important}" +
+    ":root #cognito .cog-button--primary:hover{background-color:#2a2622!important;" +
+    "border-color:#2a2622!important}" +
+    ":root #cognito .cog-page__navigation{justify-content:flex-start;padding:0;margin-top:0.25rem}";
 
-  function cognitoCssUrl(path) {
-    return new URL(path, window.location.href).href;
-  }
+  const COGNITO_CSS_LOCATION =
+    COGNITO_CSS_BASE +
+    ":root #cognito .cog-field.cog-choice~.cog-field.cog-choice{display:none!important}";
+
+  let iframeScriptPromise = null;
 
   function loadIframeScript() {
     if (typeof Cognito !== "undefined") {
@@ -42,17 +72,21 @@
     return iframeScriptPromise;
   }
 
-  function configureIframe(iframe, cssPath, locationLabel) {
+  function applyIframeConfig(iframe, css, locationLabel) {
+    if (typeof Cognito === "undefined") return;
+
+    const cognito = Cognito("#" + iframe.id);
+    cognito.setCss(css);
+    if (locationLabel) {
+      cognito.prefill({ [LOCATION_FIELD]: locationLabel });
+    }
+  }
+
+  function configureIframe(iframe, css, locationLabel) {
     loadIframeScript()
-      .then(() => {
-        const cognito = Cognito("#" + iframe.id);
-        cognito.setCss(cognitoCssUrl(cssPath));
-        if (locationLabel) {
-          cognito.prefill({ [LOCATION_FIELD]: locationLabel });
-        }
-      })
+      .then(() => applyIframeConfig(iframe, css, locationLabel))
       .catch(() => {
-        /* Form still works without custom CSS or prefill */
+        /* Form still works with Cognito defaults */
       });
   }
 
@@ -63,7 +97,7 @@
     const iframeId = isLocation
       ? "gph-location-enquiry-iframe"
       : "gph-cognito-iframe";
-    const cssPath = isLocation ? COGNITO_CSS_LOCATION : COGNITO_CSS_CONTACT;
+    const css = isLocation ? COGNITO_CSS_LOCATION : COGNITO_CSS_BASE;
 
     const slug = container.dataset.location;
     const locationLabel = slug ? LOCATION_LABELS[slug] : "";
@@ -84,11 +118,12 @@
     iframe.style.border = "0";
     iframe.style.width = "100%";
 
-    iframe.addEventListener("load", () => {
-      configureIframe(iframe, cssPath, locationLabel);
-    });
-
     container.appendChild(iframe);
+
+    configureIframe(iframe, css, locationLabel);
+    iframe.addEventListener("load", () => {
+      configureIframe(iframe, css, locationLabel);
+    });
   }
 
   function init() {

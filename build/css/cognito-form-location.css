@@ -1,9 +1,9 @@
 /**
- * Location enquiry — form 90 with Project type hidden.
- * Field order: Name, Email, Location type, Project type, Message.
+ * Reference copy of Cognito iframe styles (applied inline via forms.js).
+ * Cognito.setCss() with a URL is unreliable on local preview — styles are inlined in JS.
  */
 
-@import url("/build/css/cognito-form.css?v=5");
+@import url("cognito-form.css");
 
 :root #cognito .cog-field.cog-choice ~ .cog-field.cog-choice {
   display: none !important;
