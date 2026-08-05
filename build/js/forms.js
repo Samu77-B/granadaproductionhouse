@@ -8,7 +8,7 @@
   const LOCATION_FIELD = "LocationType";
 
   const LOCATION_LABELS = {
-    "historic-moorish-architecture": "Historic Moorish Architecture",
+    "moorish-architecture": "Moorish Architecture",
     "historic-and-traditional": "Historic and Traditional",
     "mediterranean-coastlines": "Mediterranean Coastlines",
     "granada-city-center": "Granada City Center & Modern Architecture",

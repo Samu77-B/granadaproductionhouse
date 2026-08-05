@@ -60,7 +60,7 @@
   function startCarousel() {
     if (!slides.length) return;
     clearInterval(slideTimer);
-    slideTimer = setInterval(nextSlide, 6000);
+    slideTimer = setInterval(nextSlide, 3500);
   }
 
   function initNav() {
