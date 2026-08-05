@@ -7,8 +7,8 @@
 
   /** Cognito internal field names — update if prefill does not work. */
   const LOCATION_FIELD = "LocationType";
-  /** Add a Text field in Cognito named "Image reference" (internal: ImageReference). */
-  const IMAGE_FIELD = "ImageReference";
+  /** Cognito text field labeled "Place Name" (internal: PlaceName). */
+  const IMAGE_FIELD = "PlaceName";
 
   const LOCATION_LABELS = {
     "moorish-architecture": "Moorish Architecture",
