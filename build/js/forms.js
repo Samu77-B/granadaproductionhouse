@@ -11,7 +11,8 @@
   const IMAGE_FIELD = "PlaceName";
 
   const LOCATION_LABELS = {
-    "moorish-architecture": "Moorish Architecture",
+    // Must match Cognito Location Type dropdown options exactly
+    "moorish-architecture": "Historic Moorish Architecture",
     "historic-and-traditional": "Historic and Traditional",
     "mediterranean-coastlines": "Mediterranean Coastlines",
     "granada-city-center": "Granada City Center & Modern Architecture",

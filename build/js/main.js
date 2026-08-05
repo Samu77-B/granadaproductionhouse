@@ -180,8 +180,7 @@
           isLocationEnquiry
             ? `<div class="lightbox__enquiry">
           <h2 class="lightbox__enquiry-title">Enquire about this location</h2>
-          <p class="lightbox__enquiry-intro">Share a few details and one of the team will be in touch within 24 hours.</p>
-          <p class="lightbox__enquiry-ref" hidden></p>
+          <p class="lightbox__enquiry-intro">Share a few details and one of the team will be in touch within 48 hours.</p>
           <div class="lightbox__enquiry-form" id="lightbox-enquiry-form"></div>
         </div>`
             : ""
@@ -196,7 +195,6 @@
     const nextBtn = lightbox.querySelector(".lightbox__nav--next");
     const closeBtn = lightbox.querySelector(".lightbox__close");
     const enquiryForm = lightbox.querySelector("#lightbox-enquiry-form");
-    const enquiryRef = lightbox.querySelector(".lightbox__enquiry-ref");
 
     function getGroup(img) {
       if (isLocationEnquiry) {
@@ -227,15 +225,6 @@
       const src = img.getAttribute("src") || img.src || "";
       const imageRef =
         img.dataset.imageRef || window.GPHForms.imageRefFromSrc(src);
-      const label =
-        img.getAttribute("alt") ||
-        imageRef ||
-        "Selected location image";
-
-      if (enquiryRef) {
-        enquiryRef.textContent = "Selected: " + label;
-        enquiryRef.hidden = !label;
-      }
 
       window.GPHForms.mountLightboxEnquiry(enquiryForm, {
         locationSlug,
