@@ -146,8 +146,10 @@
     const thumbs = Array.from(document.querySelectorAll(thumbSelector));
     if (!thumbs.length) return;
 
-    const locationForm = document.getElementById("location-enquiry-form");
-    const locationSlug = locationForm ? locationForm.dataset.location || "" : "";
+    const locationSlug =
+      document.body.dataset.location ||
+      document.getElementById("location-enquiry-form")?.dataset.location ||
+      "";
     const isLocationEnquiry = Boolean(locationSlug);
 
     let activeIndex = 0;
