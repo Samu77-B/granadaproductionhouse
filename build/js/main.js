@@ -146,26 +146,45 @@
     const thumbs = Array.from(document.querySelectorAll(thumbSelector));
     if (!thumbs.length) return;
 
+    const locationForm = document.getElementById("location-enquiry-form");
+    const locationSlug = locationForm ? locationForm.dataset.location || "" : "";
+    const isLocationEnquiry = Boolean(locationSlug);
+
     let activeIndex = 0;
     let activeGroup = [];
     let lastFocus = null;
 
     const lightbox = document.createElement("div");
-    lightbox.className = "lightbox";
+    lightbox.className = "lightbox" + (isLocationEnquiry ? " lightbox--enquiry" : "");
     lightbox.hidden = true;
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-modal", "true");
-    lightbox.setAttribute("aria-label", "Image preview");
+    lightbox.setAttribute(
+      "aria-label",
+      isLocationEnquiry ? "Location image enquiry" : "Image preview"
+    );
     lightbox.setAttribute("aria-hidden", "true");
     lightbox.innerHTML = `
       <div class="lightbox__backdrop" data-lightbox-close></div>
-      <button type="button" class="lightbox__close" aria-label="Close image preview">&times;</button>
+      <button type="button" class="lightbox__close" aria-label="Close">&times;</button>
       <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Previous image">&#8249;</button>
       <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Next image">&#8250;</button>
-      <figure class="lightbox__figure">
-        <img class="lightbox__image" src="" alt="">
-        <figcaption class="lightbox__caption" hidden></figcaption>
-      </figure>
+      <div class="lightbox__panel">
+        <figure class="lightbox__figure">
+          <img class="lightbox__image" src="" alt="">
+          <figcaption class="lightbox__caption" hidden></figcaption>
+        </figure>
+        ${
+          isLocationEnquiry
+            ? `<div class="lightbox__enquiry">
+          <h2 class="lightbox__enquiry-title">Enquire about this location</h2>
+          <p class="lightbox__enquiry-intro">Share a few details and one of the team will be in touch within 24 hours.</p>
+          <p class="lightbox__enquiry-ref" hidden></p>
+          <div class="lightbox__enquiry-form" id="lightbox-enquiry-form"></div>
+        </div>`
+            : ""
+        }
+      </div>
     `;
     document.body.appendChild(lightbox);
 
@@ -174,8 +193,23 @@
     const prevBtn = lightbox.querySelector(".lightbox__nav--prev");
     const nextBtn = lightbox.querySelector(".lightbox__nav--next");
     const closeBtn = lightbox.querySelector(".lightbox__close");
+    const enquiryForm = lightbox.querySelector("#lightbox-enquiry-form");
+    const enquiryRef = lightbox.querySelector(".lightbox__enquiry-ref");
 
     function getGroup(img) {
+      if (isLocationEnquiry) {
+        const gallery = document.querySelector(".location-gallery");
+        const media = document.querySelector(
+          ".page-section__grid--location .page-section__media img"
+        );
+        const group = [];
+        if (media) group.push(media);
+        if (gallery) {
+          gallery.querySelectorAll("img").forEach((el) => group.push(el));
+        }
+        return group.length ? group : [img];
+      }
+
       const section = img.closest(".page-section__inner");
       if (section) {
         return Array.from(section.querySelectorAll(thumbSelector));
@@ -183,6 +217,28 @@
 
       const gallery = img.closest(".work-grid, .location-gallery");
       return gallery ? Array.from(gallery.querySelectorAll("img")) : [img];
+    }
+
+    function syncEnquiryForm(img) {
+      if (!isLocationEnquiry || !enquiryForm || !window.GPHForms) return;
+
+      const src = img.getAttribute("src") || img.src || "";
+      const imageRef =
+        img.dataset.imageRef || window.GPHForms.imageRefFromSrc(src);
+      const label =
+        img.getAttribute("alt") ||
+        imageRef ||
+        "Selected location image";
+
+      if (enquiryRef) {
+        enquiryRef.textContent = "Selected: " + label;
+        enquiryRef.hidden = !label;
+      }
+
+      window.GPHForms.mountLightboxEnquiry(enquiryForm, {
+        locationSlug,
+        imageRef,
+      });
     }
 
     function showImage(index) {
@@ -202,6 +258,10 @@
       const showNav = activeGroup.length > 1;
       prevBtn.hidden = !showNav;
       nextBtn.hidden = !showNav;
+
+      if (isLocationEnquiry) {
+        syncEnquiryForm(img);
+      }
     }
 
     function open(img) {
@@ -220,6 +280,9 @@
       lightbox.setAttribute("aria-hidden", "true");
       image.removeAttribute("src");
       document.body.classList.remove("lightbox-open");
+      if (isLocationEnquiry && enquiryForm && window.GPHForms) {
+        window.GPHForms.clearLightboxEnquiry(enquiryForm);
+      }
       if (lastFocus && typeof lastFocus.focus === "function") {
         lastFocus.focus();
       }

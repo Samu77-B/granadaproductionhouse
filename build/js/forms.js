@@ -3,9 +3,12 @@
     "https://www.cognitoforms.com/f/nra8M7-W5EyCgKiqoaohEw/90";
   const IFRAME_HEIGHT_CONTACT = "720";
   const IFRAME_HEIGHT_LOCATION = "580";
+  const IFRAME_HEIGHT_LIGHTBOX = "640";
 
-  /** Cognito internal field name for location dropdown — update if prefill does not work. */
+  /** Cognito internal field names — update if prefill does not work. */
   const LOCATION_FIELD = "LocationType";
+  /** Add a Text field in Cognito named "Image reference" (internal: ImageReference). */
+  const IMAGE_FIELD = "ImageReference";
 
   const LOCATION_LABELS = {
     "moorish-architecture": "Moorish Architecture",
@@ -90,22 +93,42 @@
     return iframeScriptPromise;
   }
 
-  function applyIframeConfig(iframe, css, locationLabel) {
+  function buildPrefill(locationLabel, imageRef) {
+    const data = {};
+    if (locationLabel) data[LOCATION_FIELD] = locationLabel;
+    if (imageRef) data[IMAGE_FIELD] = imageRef;
+    return data;
+  }
+
+  function applyIframeConfig(iframe, css, locationLabel, imageRef) {
     if (typeof Cognito === "undefined") return;
 
     const cognito = Cognito("#" + iframe.id);
     cognito.setCss(css);
-    if (locationLabel) {
-      cognito.prefill({ [LOCATION_FIELD]: locationLabel });
+    const prefill = buildPrefill(locationLabel, imageRef);
+    if (Object.keys(prefill).length) {
+      cognito.prefill(prefill);
     }
   }
 
-  function configureIframe(iframe, css, locationLabel) {
+  function configureIframe(iframe, css, locationLabel, imageRef) {
     loadIframeScript()
-      .then(() => applyIframeConfig(iframe, css, locationLabel))
+      .then(() => applyIframeConfig(iframe, css, locationLabel, imageRef))
       .catch(() => {
         /* Form still works with Cognito defaults */
       });
+  }
+
+  function createIframe(iframeId, height) {
+    const iframe = document.createElement("iframe");
+    iframe.id = iframeId;
+    iframe.src = COGNITO_FORM_URL;
+    iframe.allow = "payment";
+    iframe.title = "Enquiry form";
+    iframe.setAttribute("height", height);
+    iframe.style.border = "0";
+    iframe.style.width = "100%";
+    return iframe;
   }
 
   function mountCognitoForm(container) {
@@ -124,24 +147,56 @@
     container.dataset.cognitoMounted = "true";
     container.innerHTML = "";
 
-    const iframe = document.createElement("iframe");
-    iframe.id = iframeId;
-    iframe.src = COGNITO_FORM_URL;
-    iframe.allow = "payment";
-    iframe.title = "Enquiry form";
-    iframe.setAttribute(
-      "height",
+    const iframe = createIframe(
+      iframeId,
       isLocation ? IFRAME_HEIGHT_LOCATION : IFRAME_HEIGHT_CONTACT
     );
-    iframe.style.border = "0";
-    iframe.style.width = "100%";
-
     container.appendChild(iframe);
 
-    configureIframe(iframe, css, locationLabel);
+    configureIframe(iframe, css, locationLabel, "");
     iframe.addEventListener("load", () => {
-      configureIframe(iframe, css, locationLabel);
+      configureIframe(iframe, css, locationLabel, "");
     });
+  }
+
+  function imageRefFromSrc(src) {
+    if (!src) return "";
+    try {
+      const path = src.split("?")[0];
+      const name = decodeURIComponent(path.split("/").pop() || "");
+      return name.replace(/\.[^.]+$/, "");
+    } catch (err) {
+      return "";
+    }
+  }
+
+  function mountLightboxEnquiry(container, options) {
+    if (!container) return;
+
+    const locationSlug = (options && options.locationSlug) || "";
+    const imageRef = (options && options.imageRef) || "";
+    const locationLabel = LOCATION_LABELS[locationSlug] || "";
+
+    container.classList.add("gph-cognito-form");
+    container.dataset.cognitoMounted = "true";
+    container.innerHTML = "";
+
+    const iframe = createIframe(
+      "gph-lightbox-enquiry-iframe",
+      IFRAME_HEIGHT_LIGHTBOX
+    );
+    container.appendChild(iframe);
+
+    configureIframe(iframe, COGNITO_CSS_LOCATION, locationLabel, imageRef);
+    iframe.addEventListener("load", () => {
+      configureIframe(iframe, COGNITO_CSS_LOCATION, locationLabel, imageRef);
+    });
+  }
+
+  function clearLightboxEnquiry(container) {
+    if (!container) return;
+    container.innerHTML = "";
+    delete container.dataset.cognitoMounted;
   }
 
   function init() {
@@ -149,6 +204,13 @@
       .querySelectorAll("#gph-cognito-form, #location-enquiry-form")
       .forEach(mountCognitoForm);
   }
+
+  window.GPHForms = {
+    LOCATION_LABELS,
+    imageRefFromSrc,
+    mountLightboxEnquiry,
+    clearLightboxEnquiry,
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
