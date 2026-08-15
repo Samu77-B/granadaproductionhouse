@@ -1,5 +1,5 @@
 (function () {
-  const base = document.body.dataset.base || "/build/";
+  const base = document.body.dataset.base || "/";
   const ADOBE_FONTS_URL = "https://use.typekit.net/rmg3cin.css";
 
   if (!document.querySelector('link[href*="typekit.net"]')) {

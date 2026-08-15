@@ -1,0 +1,10 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Used when this folder is the web root (e.g. Fasthosts later).
+# Skip if still served from /build/ on Hostinger so URLs stay canonical.
+RewriteCond %{REQUEST_URI} !^/build/
+RewriteCond %{HTTP_HOST} !^www\.granadaproductionhouse\.com$ [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://www.granadaproductionhouse.com%{REQUEST_URI} [L,R=301]

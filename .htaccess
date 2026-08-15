@@ -1,0 +1,27 @@
+Options -Indexes
+DirectoryIndex index.php /build/index.html
+
+RewriteEngine On
+
+# Force HTTPS + www in one redirect
+RewriteCond %{HTTP_HOST} !^www\.granadaproductionhouse\.com$ [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://www.granadaproductionhouse.com%{REQUEST_URI} [L,R=301]
+
+# Old preview URLs: /build/about/ → /about/
+RewriteCond %{THE_REQUEST} \s/+build/ [NC]
+RewriteRule ^build/(.*)$ https://www.granadaproductionhouse.com/$1 [R=301,L]
+
+# Do not expose repo internals
+RewriteRule ^(?:studio|docs|scripts|node_modules)(?:/|$) - [R=404,L]
+
+# Already inside /build/ (internal rewrite target)
+RewriteRule ^build/ - [L]
+
+# Real files at the web root (robots.txt, sitemap.xml, Search Console HTML)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Serve the static site from /build/ at the domain root
+RewriteRule ^$ /build/index.html [L]
+RewriteRule ^(.*)$ /build/$1 [L]

@@ -1,6 +1,6 @@
 # Granada Production House — website
 
-Static site output lives in [`build/`](build/) (deploy this folder to Fasthosts).
+Static site output lives in [`build/`](build/). Hostinger Git deploys the repo root; `.htaccess` serves `build/` at `/` and redirects `/build/` URLs. For Fasthosts later, upload the **contents** of `build/` to `public_html`.
 
 ## Content editing (Sanity)
 
