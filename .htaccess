@@ -1,5 +1,5 @@
 Options -Indexes
-DirectoryIndex index.php /build/index.html
+DirectoryIndex index.html index.php
 
 RewriteEngine On
 
@@ -22,6 +22,17 @@ RewriteRule ^build/ - [L]
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
-# Serve the static site from /build/ at the domain root
+# Trailing slash for site sections so relative images resolve
+RewriteCond %{DOCUMENT_ROOT}/build/$1 -d
+RewriteRule ^(.+[^/])$ /$1/ [R=301,L]
+
+# Homepage
 RewriteRule ^$ /build/index.html [L]
+
+# Directory pages: /about/ → /build/about/index.html
+RewriteCond %{DOCUMENT_ROOT}/build/$1/index.html -f
+RewriteRule ^(.+)/$ /build/$1/index.html [L]
+
+# Other files: /css/styles.css → /build/css/styles.css
+RewriteCond %{DOCUMENT_ROOT}/build/$1 -f
 RewriteRule ^(.*)$ /build/$1 [L]
