@@ -7,7 +7,8 @@
     "studio": "npm run dev --prefix studio",
     "studio:build": "npm run build --prefix studio",
     "studio:deploy": "npm run deploy --prefix studio",
-    "content:export": "node scripts/export-content.mjs"
+    "content:export": "node scripts/export-content.mjs",
+    "content:seed": "node scripts/seed-sanity.mjs"
   },
   "devDependencies": {
     "@sanity/client": "^6.24.0"

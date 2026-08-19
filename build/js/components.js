@@ -81,7 +81,7 @@
         <div class="site-footer__grid">
           <div class="site-footer__brand">
             <img src="${base}assets/GPH-Logo-Wht.png" alt="Granada Production House">
-            <p>Boutique photoshoot production company based in Granada, Spain.</p>
+            <p data-cms-footer="tagline">Boutique photoshoot production company based in Granada, Spain.</p>
           </div>
 
           <div class="site-footer__col">
@@ -97,8 +97,8 @@
           <div class="site-footer__col">
             <h2 class="site-footer__heading">Contact</h2>
             <p>Granada, Spain</p>
-            <p><a href="mailto:hola@granadaproductionhouse.com">hola@granadaproductionhouse.com</a></p>
-            <p><a href="https://www.instagram.com/granadaproductionhouse" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+            <p><a data-cms-footer="email" href="mailto:hola@granadaproductionhouse.com">hola@granadaproductionhouse.com</a></p>
+            <p><a data-cms-footer="instagram" href="https://www.instagram.com/granadaproductionhouse" target="_blank" rel="noopener noreferrer">Instagram</a></p>
             <p class="site-footer__locations">
               ${locationLinks
                 .map((link) => `<a href="${resolve(link.href)}">${link.label}</a>`)

@@ -6,6 +6,7 @@ const singletonIds = [
   "contactPage",
   "servicesPage",
   "ourWorkPage",
+  "teamPage",
   "locationsIndexPage",
 ];
 
@@ -33,6 +34,10 @@ export const structure: StructureResolver = (S) =>
         .title("Our work")
         .id("ourWorkPage")
         .child(S.document().schemaType("ourWorkPage").documentId("ourWorkPage")),
+      S.listItem()
+        .title("Meet the team")
+        .id("teamPage")
+        .child(S.document().schemaType("teamPage").documentId("teamPage")),
       S.listItem()
         .title("Locations (main page)")
         .id("locationsIndexPage")

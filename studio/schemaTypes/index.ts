@@ -28,9 +28,20 @@ export const siteSettings = defineType({
       type: "string",
     }),
     defineField({
+      name: "enquiryEmail",
+      title: "Enquiries email",
+      type: "string",
+      description: "Shown on the contact page (can be different from the footer email).",
+    }),
+    defineField({
       name: "instagramUrl",
       title: "Instagram URL",
       type: "url",
+    }),
+    defineField({
+      name: "footerTagline",
+      title: "Footer tagline",
+      type: "string",
     }),
   ],
 });
@@ -74,6 +85,7 @@ export const heroFields = [
     title: "Hero background image",
     type: "image",
     options: { hotspot: true },
+    fields: [defineField({ name: "alt", title: "Alt text", type: "string" })],
   }),
 ];
 
@@ -134,6 +146,7 @@ export const homePage = defineType({
       title: "About section image",
       type: "image",
       options: { hotspot: true },
+      fields: [defineField({ name: "alt", title: "Alt text", type: "string" })],
     }),
   ],
 });
@@ -184,6 +197,13 @@ export const servicesPage = defineType({
     ...seoFields,
     ...heroFields,
     defineField({
+      name: "sideImage",
+      title: "Side image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [defineField({ name: "alt", title: "Alt text", type: "string" })],
+    }),
+    defineField({
       name: "services",
       title: "Services list",
       type: "array",
@@ -209,6 +229,11 @@ export const ourWorkPage = defineType({
     ...seoFields,
     ...heroFields,
     defineField({
+      name: "introHeadline",
+      title: "Intro headline",
+      type: "string",
+    }),
+    defineField({
       name: "intro",
       title: "Intro text",
       type: "text",
@@ -224,6 +249,11 @@ export const ourWorkPage = defineType({
           fields: [
             defineField({ name: "image", type: "image", options: { hotspot: true } }),
             defineField({ name: "alt", type: "string" }),
+            defineField({
+              name: "caption",
+              title: "Lightbox caption",
+              type: "string",
+            }),
           ],
           preview: { select: { title: "alt", media: "image" } },
         },
@@ -248,6 +278,13 @@ export const locationsIndexPage = defineType({
   ],
 });
 
+export const teamPage = defineType({
+  name: "teamPage",
+  title: "Team page",
+  type: "document",
+  fields: [...seoFields, ...heroFields],
+});
+
 export const location = defineType({
   name: "location",
   title: "Location",
@@ -258,6 +295,19 @@ export const location = defineType({
       title: "Title",
       type: "string",
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "sortOrder",
+      title: "Sort order",
+      type: "number",
+      description: "Lower numbers appear first on the Locations page.",
+    }),
+    defineField({
+      name: "cardDescription",
+      title: "Card description",
+      type: "text",
+      rows: 4,
+      description: "Short text on the Locations index card.",
     }),
     defineField({
       name: "slug",
@@ -294,6 +344,7 @@ export const location = defineType({
       title: "Side image (next to intro)",
       type: "image",
       options: { hotspot: true },
+      fields: [defineField({ name: "alt", title: "Alt text", type: "string" })],
     }),
     defineField({
       name: "gallery",
@@ -381,6 +432,7 @@ export const schemaTypes = [
   contactPage,
   servicesPage,
   ourWorkPage,
+  teamPage,
   locationsIndexPage,
   location,
   teamMember,

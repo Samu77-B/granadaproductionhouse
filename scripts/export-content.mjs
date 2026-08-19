@@ -44,6 +44,7 @@ const query = `{
   "contactPage": *[_type == "contactPage"][0],
   "servicesPage": *[_type == "servicesPage"][0],
   "ourWorkPage": *[_type == "ourWorkPage"][0],
+  "teamPage": *[_type == "teamPage"][0],
   "locationsIndexPage": *[_type == "locationsIndexPage"][0],
   "locations": *[_type == "location"] | order(title asc),
   "team": *[_type == "teamMember"] | order(sortOrder asc, name asc)

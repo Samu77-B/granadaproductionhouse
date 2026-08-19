@@ -6,5 +6,6 @@ node_modules/
 .env
 .env.local
 studio/.env
+studio/.sanity/
 content/sanity-export.json
 studio/dist/
