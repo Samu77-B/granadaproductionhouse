@@ -225,11 +225,18 @@
   }
 
   /**
-   * Sanity CDN filenames are content hashes, so the enquiry form reads the
-   * original upload name from this attribute instead of the src.
+   * Place Name on the enquiry form. Prefer the editable Sanity alt text;
+   * originalFilename only changes if the file is re-uploaded.
    */
   function imageRef(filename) {
     return String(filename).replace(/\.[^.]+$/, "");
+  }
+
+  function placeName(image) {
+    if (!image) return "";
+    if (hasText(image.alt)) return image.alt.trim();
+    if (hasText(image.filename)) return imageRef(image.filename);
+    return "";
   }
 
   function setImage(selector, image, width) {
@@ -237,7 +244,8 @@
     if (!el || !image || !image.url) return;
     el.src = imageUrl(image.url, width);
     if (hasText(image.alt)) el.alt = image.alt;
-    if (hasText(image.filename)) el.dataset.imageRef = imageRef(image.filename);
+    const ref = placeName(image);
+    if (ref) el.dataset.imageRef = ref;
   }
 
   function spanToHtml(span, markDefs) {
@@ -546,10 +554,9 @@
     if (!gallery) return;
     gallery.innerHTML = items
       .map((item) => {
-        const ref = hasText(item.filename)
-          ? ` data-image-ref="${escapeHtml(imageRef(item.filename))}"`
-          : "";
-        return `<img src="${imageUrl(item.url, 1400)}" alt="${escapeHtml(item.alt || "")}"${ref}>`;
+        const ref = placeName(item);
+        const refAttr = ref ? ` data-image-ref="${escapeHtml(ref)}"` : "";
+        return `<img src="${imageUrl(item.url, 1400)}" alt="${escapeHtml(item.alt || "")}"${refAttr}>`;
       })
       .join("");
   }

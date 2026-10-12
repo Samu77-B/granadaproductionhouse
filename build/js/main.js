@@ -246,8 +246,9 @@
       if (!isLocationEnquiry || !enquiryForm || !window.GPHForms) return;
 
       const src = img.getAttribute("src") || img.src || "";
+      const alt = (img.getAttribute("alt") || "").trim();
       const imageRef =
-        img.dataset.imageRef || window.GPHForms.imageRefFromSrc(src);
+        img.dataset.imageRef || alt || window.GPHForms.imageRefFromSrc(src);
 
       window.GPHForms.mountLightboxEnquiry(enquiryForm, {
         locationSlug,

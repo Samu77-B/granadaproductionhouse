@@ -344,7 +344,15 @@ export const location = defineType({
       title: "Side image (next to intro)",
       type: "image",
       options: { hotspot: true },
-      fields: [defineField({ name: "alt", title: "Alt text", type: "string" })],
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Place name / alt text",
+          type: "string",
+          description:
+            "Shown as Place Name on the enquiry form when someone clicks this image.",
+        }),
+      ],
     }),
     defineField({
       name: "gallery",
@@ -355,7 +363,13 @@ export const location = defineType({
           type: "object",
           fields: [
             defineField({ name: "image", type: "image", options: { hotspot: true } }),
-            defineField({ name: "alt", type: "string" }),
+            defineField({
+              name: "alt",
+              title: "Place name / alt text",
+              type: "string",
+              description:
+                "Shown as Place Name on the enquiry form when someone clicks this image.",
+            }),
           ],
           preview: { select: { title: "alt", media: "image" } },
         },
